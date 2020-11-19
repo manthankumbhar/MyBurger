@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\Burger",
+    "\\src\\components\\Burger\\BuildControls",
+    "\\src\\components\\Burger\\BurgerIngredient",
+    "\\src\\components\\Burger\\OrderSummary",
+    "\\src\\components\\Layout",
+    "\\src\\hoc",
+    "\\src\\hoc\\withErrorHandler"
+  ],
+  "SelectedNode": "\\src\\containers\\BurgerBuilder\\BurgerBuilder.js",
+  "PreviewInSolutionExplorer": false
+}
