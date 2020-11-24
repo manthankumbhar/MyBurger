@@ -10,6 +10,7 @@ class Orders extends Component {
     }
 
     componentDidMount() {
+        alert('Sorry, We are still working for a better user experience, You can check our demo version of how the orders look though!')
         axios.get('/orders.json').then(response => {
             const fetchedOrders = [];
             for (let key in response.data) {
