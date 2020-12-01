@@ -7,10 +7,10 @@
     "\\src\\components\\Navigation\\NavigationItem",
     "\\src\\components\\Navigation\\NavigationItems",
     "\\src\\components\\UI",
-    "\\src\\components\\UI\\Modal",
+    "\\src\\components\\UI\\Input",
     "\\src\\containers",
-    "\\src\\containers\\BurgerBuilder"
+    "\\src\\containers\\Orders"
   ],
-  "SelectedNode": "\\src\\components\\Navigation\\NavigationItems\\NavigationItems.js",
+  "SelectedNode": "\\src\\containers\\Orders\\Orders.js",
   "PreviewInSolutionExplorer": false
 }

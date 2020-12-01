@@ -4,6 +4,7 @@ import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContactData extends Component {
     state = {
@@ -12,12 +13,12 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder:'Name'
+                    placeholder: 'Name'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    minLength:4
+                    minLength: 4
                 },
                 valid: false,
                 touched: false
@@ -32,7 +33,7 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength:5
+                    minLength: 5
                 },
                 valid: false,
                 touched: false
@@ -48,11 +49,11 @@ class ContactData extends Component {
                 validation: {
                     required: true,
                     minLength: 4,
-                    maxLength:6
+                    maxLength: 6
                 },
                 valid: false,
                 touched: false
-            },            
+            },
 
             email: {
                 elementType: 'input',
@@ -63,7 +64,7 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength:5
+                    minLength: 5
                 },
                 valid: false,
                 touched: false
@@ -76,22 +77,22 @@ class ContactData extends Component {
                         { value: 'fastest', displayValue: 'Fastest' },
                         { value: 'pickup', displayValue: 'Pick-Up' },
                         { value: 'drivethrough', displayValue: 'Drive-Through' },
-                        { value: 'cheapest', displayValue: 'Cheapest' }                        
+                        { value: 'cheapest', displayValue: 'Cheapest' }
                     ]
                 },
                 value: 'fastest',
-                validation: {}, 
+                validation: {},
                 valid: true
-            }           
+            }
         },
         formIsValid: false,
         loading: false
-        
+
     }
 
     orderHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.ingredients);
+        console.log(this.props.ingedients);
         this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.orderForm) {
@@ -99,14 +100,14 @@ class ContactData extends Component {
         }
 
         const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.price,
+            ingredients: this.props.ings,
+            price: this.props.price, 
             orderData: formData
         }
         axios.post('/orders.json', order).then(Response => {
             this.setState({ loading: false });
             this.props.history.push('/');
-        });    
+        });
     }
 
     inputChangedHandler = (event, inputIndentifier) => {
@@ -140,14 +141,14 @@ class ContactData extends Component {
         }
         if (rules.minLength) {
             isValid = value.length >= rules.minLength && isValid;
-        } 
+        }
         if (rules.maxLength) {
             isValid = value.length <= rules.maxLength && isValid;
         }
 
         return isValid;
     }
-    
+
 
     render() {
 
@@ -170,7 +171,7 @@ class ContactData extends Component {
                         invalid={!formElement.config.valid}
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
-                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />                    
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
@@ -187,4 +188,11 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactData);
